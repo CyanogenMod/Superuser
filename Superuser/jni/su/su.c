@@ -442,13 +442,14 @@ static void usage(int status) {
     FILE *stream = (status == EXIT_SUCCESS) ? stdout : stderr;
 
     fprintf(stream,
-    "Usage: su [options] [--] [-] [LOGIN] [--] [args...]\n\n"
+    "Usage: su [-o | --override | --daemon] [options] [--] [-] [LOGIN] [--] [args...]\n\n"
     "Options:\n"
     "  --daemon                      start the su daemon agent\n"
     "  -c, --command COMMAND         pass COMMAND to the invoked shell\n"
     "  -h, --help                    display this help message and exit\n"
     "  -, -l, --login                pretend the shell to be a login shell\n"
     "  -m, -p,\n"
+    "  -o, --override                override the daemon process\n"
     "  --preserve-environment        do not change environment variables\n"
     "  -s, --shell SHELL             use SHELL instead of the default " DEFAULT_SHELL "\n"
     "  -u                            display the multiuser mode and exit\n"
@@ -616,7 +617,12 @@ int main(int argc, char *argv[]) {
         return run_daemon();
     }
 
-    if (geteuid() != AID_ROOT && getuid() != AID_ROOT) {
+    if (argc > 1 && (strcmp(argv[1], "-o" || strcmp(argv[1], "--override") == 0)) {
+        // override the daemon process (allow old style execution when nosuid/selinux is not set/enabled)
+        LOGD("override daemon process %d %d", getuid(), geteuid());
+        ++optind;
+    }
+    else if (geteuid() != AID_ROOT && getuid() != AID_ROOT) {
         // attempt to connect to daemon...
         LOGD("starting daemon client %d %d", getuid(), geteuid());
         return connect_daemon(argc, argv);
