@@ -46,10 +46,24 @@ rm -f /system/app/supersu.*
 rm -f /system/app/SuperUser.*
 rm -f /system/app/SuperSU.*
 
+mkdir -p /system/bin/.ext
+chown 0:0 /system/bin/.ext
+chmod 6755 /system/bin/.ext
+
+cp $PLATFORM/su /system/bin/.ext/su
+chown 0:0 /system/bin/.ext/su
+chmod 6755 /system/bin/.ext/su
+ln -s /system/bin/.ext/su /system/xbin/su
+
 cp $PLATFORM/su /system/xbin/su
 chown 0:0 /system/xbin/su
 chmod 6755 /system/xbin/su
 ln -s /system/xbin/su /system/bin/su
+
+cp $PLATFORM/su /system/xbin/daemonsu
+chown 0:0 /system/xbin/daemonsu
+chmod 6755 /system/xbin/daemonsu
+ln -s /system/xbin/daemonsu /system/xbin/su
 
 cp Superuser.apk /system/app
 chmod 644 /system/app/Superuser.apk
