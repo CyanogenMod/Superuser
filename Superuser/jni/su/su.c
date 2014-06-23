@@ -44,7 +44,7 @@ extern int daemon_from_pid;
 unsigned get_shell_uid() {
   struct passwd* ppwd = getpwnam("shell");
   if (NULL == ppwd) {
-    return 2000;
+    return 3000;
   }
 
   return ppwd->pw_uid;
@@ -65,6 +65,14 @@ unsigned get_radio_uid() {
     return 1001;
   }
 
+  return ppwd->pw_uid;
+}
+
+unsigned get_data_uid() {
+  struct passwd* ppwd = getpwnam("data");
+  if (NULL == ppwd) {
+    return 1002;
+  }
   return ppwd->pw_uid;
 }
 
