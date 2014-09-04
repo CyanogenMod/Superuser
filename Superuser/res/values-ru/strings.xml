@@ -56,8 +56,8 @@
   <string name="number_seconds">%s секунд</string>
   <string name="superuser_granted">Приложению «%s» предоставлены права суперпользователя</string>
   <string name="superuser_denied">Приложению «%s» отказано в получении прав суперпользователя</string>
-  <string name="toast">всплывающее оповещение</string>
-  <string name="notification">уведомление в строке состояния</string>
+  <string name="toast">Всплывающее оповещение</string>
+  <string name="notification">Уведомление в строке состояния</string>
   <string name="no_notification">Уведомления отключены</string>
   <string name="developer_warning">Внимание:\nразрешение android.permission.ACCESS_SUPERUSER\nне объявлено в манифесте приложения.</string>
   <string name="superuser_description">Полный доступ к функциям устройства и памяти</string>
