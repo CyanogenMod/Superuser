@@ -168,7 +168,7 @@ public class PolicyFragmentInternal extends ListContentFragmentInternal {
                 switch (which) {
                 case 0:
                     if(permissionChange.equalsIgnoreCase(
-                     getResources().getText(R.string.allow).toString())){
+                     getResources().getText(R.string.su_allow).toString())){
                  up.setPolicy(UidPolicy.ALLOW);
                     }
                     else{
